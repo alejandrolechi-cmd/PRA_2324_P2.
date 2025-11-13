@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+#include<chrono>
+#include "DyV.h"
+
+using namespace std;
+int main(){
+    vector<int> v1{1,2,4,6,34,36,52};
+    vector<double> v2{1.1,2.541,4.512,6.41,34.421,36.41,52.421};
+    vector<int> v3{10,9,8,5,4,2,1};
+    int search1=5;
+    int search2=4;
+    double search1_1=2.541;
+    int res1=BusquedaBinaria(search1,v1,0,v1.size()-1);
+    cout<< ((res1==-1) ? "No se ha encontrado en el array" : to_string(res1)) <<endl;
+    cout<<BusquedaBinaria(search2,v1,0,v1.size()-1)<<endl;
+    cout<<BusquedaBinaria(search1_1,v2,0,v2.size()-1)<<endl;
+    cout<<BusquedaBinaria_INV(search1,v3,0,v3.size()-1);
+
+    vector<int> arr = {8, 3, 1, 7, 0, 10, 2, 5, 4};
+//Quick sort
+    cout << "Original array: ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+
+    cout<<"Quick sort with last element as pivot"<<endl;
+    auto start1 = std::chrono::system_clock::now();
+    quickSortPiLast(arr, 0, arr.size() - 1);
+    auto end1 = std::chrono::system_clock::now();
+
+    cout << "Sorted array:   ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+    std::chrono::duration<double, std::milli> duration1 = end1 - start1;
+
+    cout<<"time consumed = "<<duration1.count()<<"ms"<<endl;
+
+    cout<<"Quick sort with first element as pivot"<<endl;
+    auto start2 = std::chrono::system_clock::now();
+    quickSortPiFirst(arr, 0, arr.size() - 1);
+    auto end2 = std::chrono::system_clock::now();
+    cout << "Sorted array:   ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+    std::chrono::duration<double, std::milli> duration2 = end2 - start2;
+    cout<<"time consumed = " << duration2.count() << "ms"<<endl;
+
+
+    cout<<"Quick sort with last element as pivot"<<endl;
+    auto start3 = std::chrono::system_clock::now();
+    quickSortPiCentral(arr, 0, arr.size() - 1);
+    auto end3 = std::chrono::system_clock::now();
+    std::chrono::duration<double, std::milli> duration3 = end3 - start3;
+
+    cout << "Sorted array:   ";
+    for (int x : arr) cout << x << " ";
+    cout << endl;
+    cout<<"time consumed = "<< duration3.count()<<"ms"<<endl;
+
+
+    return 0;
+}
